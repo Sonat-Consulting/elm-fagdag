@@ -11,6 +11,9 @@ Install these to get started.
 1. Install [elm-format](https://github.com/avh4/elm-format)
     1. `yarn global add elm-format`
     1. `npm install -g elm-format`
+1. Install [json-server](https://github.com/typicode/json-server)
+    1. `yarn global add json-server`
+    1. `npm install -g json-server`
 
 VSCode users: [Install Elm Language Support](https://marketplace.visualstudio.com/items?itemName=sbrink.elm) 
 
