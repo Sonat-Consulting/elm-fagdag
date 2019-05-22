@@ -1,9 +1,23 @@
 module Main exposing (Model, Msg(..), formatName, init, main, update, view)
 
 import Browser
+import Dict exposing (Dict)
 import Html exposing (Html, button, div, form, h1, h3, img, input, label, p, text)
 import Html.Attributes exposing (placeholder, value)
 import Html.Events exposing (onClick, onInput)
+
+
+
+---- PROGRAM ----
+
+
+main : Program () Model Msg
+main =
+    Browser.sandbox
+        { init = init
+        , view = view
+        , update = update
+        }
 
 
 
@@ -11,8 +25,9 @@ import Html.Events exposing (onClick, onInput)
 
 
 type alias Model =
-    { persons : List Person
-    , form : Person
+    { form : Person
+
+    -- Hint: The model needs a list to hold persons (remember to update init : Model after adding extending the record)
     }
 
 
@@ -25,7 +40,7 @@ type alias Person =
 
 init : Model
 init =
-    Model [] (Person "" "" "")
+    Model (Person "" "" "")
 
 
 
@@ -33,30 +48,22 @@ init =
 
 
 type Msg
-    = FirstNameInput String
+    = NoOp
+    | FirstNameInput String
     | LastNameInput String
     | EmailInput String
     | CreatePerson
 
 
-
--- | SetPersonActive Person
--- | SetPersonInactive Person
--- | ClearAll
-
-
 update : Msg -> Model -> Model
 update msg model =
     case msg of
-        CreatePerson ->
-            let
-                oldActive =
-                    model.persons
+        NoOp ->
+            model
 
-                newActive =
-                    model.form :: oldActive
-            in
-            { model | persons = newActive, form = Person "" "" "" }
+        CreatePerson ->
+            -- Hint: Add new persons to the list here
+            model
 
         FirstNameInput firstName ->
             let
@@ -90,30 +97,26 @@ update msg model =
 
 
 
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -> Sub Msg
+subscriptions model =
+    Sub.none
+
+
+
 ---- VIEW ----
 
 
 view : Model -> Html Msg
 view model =
     div []
-        [ h1 [] [ text "Person Manager" ]
-        , createPersonForm model -- Adds the form function
-        , div [] [] -- Tip: Define a function to draw a view of people who are active.
-        , div [] [] -- Tip: Define a function to draw a view of people who are inactive.
-        , h3 [] [ text "Active users" ]
+        [ h1 [] [ text "Person" ]
+        , createPersonForm model
+        , h3 [] [ text "Persons" ]
 
-        {--
-         Simple example of how we ca use simple anonymous functions to map values to views
-         Also not the |> (backwards) and <| (forwards) operator. 
-         These are useful for function applications and for avoidin parentheses.
-         The below code could also possibly have been split into its own function (aad should)
-         in the event that the complexity increases.
-        --}
-        , model.persons
-            |> List.map (\x -> p [] [ text <| x.firstName ++ " " ++ x.lastName ++ " " ++ x.email ])
-            |> div []
-
-        -- Uncomment to check out the entire model state
+        -- Hint: Map the persons to html here in order to see them.
         -- , showModel model
         ]
 
@@ -131,22 +134,10 @@ createPersonForm model =
 showModel : Model -> Html Msg
 showModel model =
     div []
-        [ h3 [] [ text "Model" ]
-        , text <| Debug.toString model
+        [ text "Debug model:"
+        , Debug.toString model
+            |> text
         ]
-
-
-
----- PROGRAM ----
-
-
-main : Program () Model Msg
-main =
-    Browser.sandbox
-        { init = init
-        , view = view
-        , update = update
-        }
 
 
 

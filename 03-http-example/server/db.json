@@ -1,0 +1,16 @@
+{
+  "peoples": [
+    {
+      "id": 1,
+      "firstName": "ola",
+      "lastName": "nordmann",
+      "email": "on@example.org"
+    },
+    {
+      "id": 2,
+      "firstName": "kari",
+      "lastName": "nordmann",
+      "email": "kn@example.org"
+    }
+  ]
+}

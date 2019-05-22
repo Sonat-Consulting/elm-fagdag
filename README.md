@@ -14,23 +14,25 @@ Install these to get started.
 
 VSCode users: [Install Elm Language Support](https://marketplace.visualstudio.com/items?itemName=sbrink.elm) 
 
-## 01-skeleton
-Person manager let's you add persons to your system, but we can do better.
+## Tasks
+01-03 are fairy simple tasks to complete, and the [Elm Guide](https://guide.elm-lang.org/) is recommended.
+They are all accompanied with a `0_-_-example` if you get stuck.
 
-### Task
-1. Create two different lists, one for active and one for inactive persons
-1. Populate a view of these lists, and create buttons to move persons between lists
-1. Create a detail button for each person containing any extra detail (email?) it's okay to hide from the primary list
-1. Move on to 02-hello-world (literally Elm interacting with the real world outside it's sandbox)
+## 01-model
+Populate a model with a `Person`
 
-## 02-solution
-This is a possible solution to the task above.
+## 02-list
+Add new `Person`s to a List 
 
-## 03-real-workd
-Continue building and exploring using either your `01-skeleton` implementation or the `02-solution` implementation to add some more "real life" functionality.
+## 03-http
+`POST` and `GET` data over HTTP
+To complete this task, install [json-server](https://github.com/typicode/json-server). An example db.json can be found
+under the `server` folder.
 
-### Task
-1. Post to and read from a remote API - install [json-server](https://github.com/typicode/json-server)
+This task uses a non-core library for JSON [elm-decode-pipeline](https://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/3.0.1/) because it feels nice to work with, and it is an instant recommendation. The example will use this, but feel free to use
+which ever approach you want. 
+
+## 00-bonus-task
 1. Post and read from localStorage (hint: ports and js)
-1. Style your project either using normal css or [elm-css](https://package.elm-lang.org/packages/rtfeldman/elm-css/latest)
 1. Write tests, but know that testing Elm is different compared to more more error prone languages
+1. Style your project either using normal css or [elm-css](https://package.elm-lang.org/packages/rtfeldman/elm-css/latest)
