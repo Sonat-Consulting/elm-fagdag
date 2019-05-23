@@ -35,6 +35,9 @@ under the `server` folder.
 This task uses a non-core library for JSON [elm-decode-pipeline](https://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/3.0.1/) because it feels nice to work with, and it is an instant recommendation. The example will use this, but feel free to use
 which ever approach you want. 
 
+## 04-js-interop
+Try to look at this, and see if it can be used elsewhere?
+
 ## 00-bonus-task
 1. Post and read from localStorage (hint: ports and js)
 1. Write tests, but know that testing Elm is different compared to more more error prone languages
