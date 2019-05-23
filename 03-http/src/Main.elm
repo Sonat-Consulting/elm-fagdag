@@ -1,6 +1,7 @@
 module Main exposing (Model, Msg(..), Person, createPersonForm, formatName, getPersons, init, main, personDecoder, personEncoder, personsDecoder, postPerson, showModel, subscriptions, update, view)
 
 import Browser
+import Debug as Debug
 import Html exposing (Html, button, div, form, h1, h3, img, input, label, p, text)
 import Html.Attributes exposing (placeholder, value)
 import Html.Events exposing (onClick, onInput)
@@ -69,27 +70,10 @@ update msg model =
             ( model, Cmd.none )
 
         GotPerson result ->
-            case result of
-                Ok newPerson ->
-                    let
-                        persons =
-                            model.persons
-
-                        newPerons =
-                            List.sortBy .id <| newPerson :: persons
-                    in
-                    ( { model | persons = newPerons }, Cmd.none )
-
-                Err err ->
-                    ( { model | error = Just <| Debug.toString err }, Cmd.none )
+            Debug.todo "Implement to get a person."
 
         GotPersons result ->
-            case result of
-                Ok newPersons ->
-                    ( { model | persons = newPersons }, Cmd.none )
-
-                Err err ->
-                    ( { model | error = Just <| Debug.toString err }, Cmd.none )
+            Debug.todo "Implement to get persons."
 
         CreatePerson ->
             ( model, postPerson model.form )
@@ -144,9 +128,8 @@ view model =
         [ h1 [] [ text "Person" ]
         , createPersonForm model
         , h3 [] [ text "Persons" ]
-        , model.persons
-            |> List.map (\person -> p [] [ text <| "(" ++ String.fromInt person.id ++ ")" ++ person.firstName ++ " " ++ person.lastName ++ " " ++ person.email ])
-            |> div []
+
+        -- map persons here
         , showError model
 
         -- , showModel model
@@ -206,19 +189,12 @@ formatName name =
 
 getPersons : Cmd Msg
 getPersons =
-    Http.get
-        { url = "http://localhost:8080/peoples"
-        , expect = Http.expectJson GotPersons personsDecoder
-        }
+    Debug.todo "Implement request to get persons"
 
 
 postPerson : Person -> Cmd Msg
 postPerson person =
-    Http.post
-        { url = "http://localhost:8080/peoples"
-        , body = Http.jsonBody <| personEncoder person
-        , expect = Http.expectJson GotPerson personDecoder
-        }
+    Debug.todo "Implement reques to post a person"
 
 
 
@@ -227,22 +203,14 @@ postPerson person =
 
 personsDecoder : Decode.Decoder (List Person)
 personsDecoder =
-    Decode.list personDecoder
+    Debug.todo "Implement decoding of persons to a list."
 
 
 personDecoder : Decode.Decoder Person
 personDecoder =
-    Decode.succeed Person
-        |> Pipeline.required "id" Decode.int
-        |> Pipeline.required "firstName" Decode.string
-        |> Pipeline.required "lastName" Decode.string
-        |> Pipeline.required "email" Decode.string
+    Debug.todo "Implement decoding of on person"
 
 
 personEncoder : Person -> Encode.Value
 personEncoder person =
-    Encode.object
-        [ ( "firstName", Encode.string <| person.firstName )
-        , ( "lastName", Encode.string <| person.lastName )
-        , ( "email", Encode.string <| person.email )
-        ]
+    Debug.todo "unimplemented"
