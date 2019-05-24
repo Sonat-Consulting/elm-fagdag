@@ -18,22 +18,28 @@ Install these to get started.
 VSCode users: [Install Elm Language Support](https://marketplace.visualstudio.com/items?itemName=sbrink.elm) 
 
 ## Tasks
-01-03 are fairy simple tasks to complete, and the [Elm Guide](https://guide.elm-lang.org/) is recommended.
-They are all accompanied with a `0_-_-example` if you get stuck.
+01-03 are fairy simple tasks to complete, and the [Elm Guide](https://guide.elm-lang.org/) is recommended. They are all accompanied with a `0_-_-example` if you get stuck, but these are very
+simple and basic and can be solved better.
 
 ## 01-model
-Populate a model with a `Person`
+Populate a model with a `Person`   
+`update : Msg -> Model -> Model` - update the records in this function for each `Msg`
 
 ## 02-list
-Add new `Person`s to a List 
+Add new `Person`s to a List.   
+Update model with a Person record (supplied, but feel free to type alias the different fields).
+
+To update the list, `Msg CreatePerson` is perhaps the best place you want to be.   
+Remember `(::) : a -> List a -> List a`.
 
 ## 03-http
-`POST` and `GET` data over HTTP
-To complete this task, install [json-server](https://github.com/typicode/json-server). An example db.json can be found
-under the `server` folder.
+`POST` and `GET` data over HTTP   
+To complete this task, install [json-server](https://github.com/typicode/json-server).   
+An example db.json can be found under the `server` folder.
 
-This task uses a non-core library for JSON [elm-decode-pipeline](https://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/3.0.1/) because it feels nice to work with, and it is an instant recommendation. The example will use this, but feel free to use
-which ever approach you want. 
+The app will crash untill all functions are implemented.
+
+This task uses a non-core library for JSON [elm-decode-pipeline](https://package.elm-lang.org/packages/NoRedInk/elm-decode-pipeline/3.0.1/) because it feels nice to work with, and it is an instant recommendation. The example will use this, but feel free to use which ever approach you want. 
 
 ## 04-js-interop
 Try to look at this, and see if it can be used elsewhere?
